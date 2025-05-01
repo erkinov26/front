@@ -1,103 +1,100 @@
+import DataFetchingComponent from "@/components/custom/data-fetching";
 import Image from "next/image";
+import rector from '@/public/Sh-Mustafakulov.png';
+import prize from '@/public/prize.svg';
+import date from '@/public/date.png';
+import checked from '@/public/checked.svg';
+import warning from '@/public/warning.svg';
+import calendar from '@/public/calendar.svg';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div className="relative w-full bg-cover min-h-screen bg-center" style={{ backgroundImage: `url('/bg-image.png')` }}>
+      {/* Date and Time */}
+      <div className="sm:flex sm:justify-start">
+        <div className="sm:ml-[6vw] sm:rounded-b-[30px] sm:w-auto sm:mx-0 w-[95%] mx-auto rounded-b-md text-gray-600 mb-[2vw] bg-white flex items-center justify-center sm:py-[0.8vw] py-[2vw] sm:px-[2vw]" style={{ boxShadow: '0px 4px 24px 0px #0000001F;' }}>
+          <Image src={calendar} alt="calendar" className="inline sm:w-[2vw] w-[6vw]" />
+          <span className="text-black text-[5vw] sm:text-[1.5vw] rounded-md font-bebas mx-[1vw]"> 10-11-MAY</span>
+          <span className="font-poppins text-[3vw] text-[#0B4075] sm:text-[1vw]">20:30, Onlayn, yopiq taqdimot</span>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
+      <div className="mx-[6vw] flex sm:flex-row flex-col-reverse justify-between items-start gap-8">
+        {/* Left Section */}
+        <div className="sm:w-[50%] w-full">
+          {/* Title */}
+          <h1 className="sm:text-[2.8vw] sm:block hidden font-bold font-bebas tracking-[0px] leading-[100%] w-full">
+            ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
+          </h1>
+          {/* Description */}
+          <p className="text-gray-700 sm:block hidden text-[0.9vw] lg:my-[1.3vw] my-[1vw] font-poppins leading-[150%] sm:w-[70%]">
+            <strong>Nordik International University</strong> arzon kontrakt evaziga chet elda o‘qish, Work & Travel dasturida qatnashish va xalqaro diplom olish imkoniyatlarini oching.
+          </p>
+          {/* Benefits */}
+          <div className="flex sm:flex-col flex-col-reverse">
+            <ul className="list-none text-gray-700 text-base sm:mt-0 mt-[2vw] mb-[1.7vw]">
+              <li className="flex items-start">
+                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
+                  Exchange dasturlari orqali qanday qilib Amerika, Koreya, Italiya kabi davlatlarda grandda o‘qish
+                </span>
+              </li>
+              <li className="flex items-start sm:my-[1.2vw] my-[3vw]">
+                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
+                  Work & Travel: Talabalik davrida qanday turar joy va daromad  olish imkoniyatlari
+                </span>
+              </li>
+              <li className="flex items-start">
+                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
+                  Arzon kontrakt bilan xalqaro diplom olish yo‘llari
+                </span>
+              </li>
+            </ul>
+            {/* Note Section */}
+            <div className="flex items-center sm:justify-start justify-between bg-white lg:px-[1.1vw] sm:p-[1vw] p-[2vw] rounded-[50px] mb-[2vw]">
+              <Image src={prize} alt="Note Icon" className="sm:w-[4.5vw] w-[15vw] mr-[1vw]" />
+              <p className="text-gray-700 sm:text-[1vw] font-poppins text-[3vw] sm:ml-0 ml-[4vw]">
+                Taqdimot qatnashchilari uchun grant va stipendiya imkoniyatlari haqida yopiq ma’lumotlar taqdim etiladi!
+              </p>
+            </div>
+            {/* Button */}
+            <div className="-mt-[40px] sm:m-0">
+              <button
+                className="text-white font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw]  z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[2vw] text-[6vw] rounded-[100px]"
+                style={{
+                  background: "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)"
+                }}
+              >
+                RO‘YXATDAN O‘TISH
+              </button>
+              {/* Warning */}
+              <div className="flex items-center gap-[1.5vw] sm:my-0 my-[4vw]  sm:mt-[2vw]">
+                <Image src={warning} alt="warning" className="sm:w-[1.5vw] w-[6vw]" />
+                <span className="font-[550] font-poppins sm:text-[1.2vw] text-[3vw]">Faqat ro‘yxatdan o‘tganlar qatnasha oladi</span>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        {/* Right Section */}
+        <div className="relative sm:flex items-start sm:w-[50%] w-full mx-auto">
+          {/* Rector Image */}
+          <h1 className="text-center sm:hidden block text-[8vw] my-[3vw] font-bold font-bebas tracking-[0px] leading-[100%] w-full">
+            ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
+          </h1>
+          {/* Description */}
+          <p className="text-gray-700 text-center sm:hidden block text-[4vw] w-full font-poppins leading-[150%]">
+            <strong>Nordik International University</strong> arzon kontrakt evaziga chet elda o‘qish, Work & Travel dasturida qatnashish va xalqaro diplom olish imkoniyatlarini oching.
+          </p>
+          <Image src={rector} alt="Speaker Image" className="sm:w-[90%] w-full -mt-[3.8vw]" />
+          {/* Date Image */}
+          <Image src={date} alt="Date Icon" className="sm:w-[50%] md:w-[40%] w-[50%] rounded-lg mt-6 absolute left-1/2 bottom-0 transform sm:-translate-x-2/3 -translate-x-1/2 -translate-y-2/3 " />
+        </div>
+      </div>
     </div>
   );
 }
