@@ -41,7 +41,7 @@ export function AnimatedModal() {
     return valid;
   };
 
-  const { isPending, mutate, isError, isSuccess } = useMutation({
+  const { isPending, mutate, isError } = useMutation({
     mutationFn: async (data: { ism: string; telefon: string }) => {
       const res = await axios.post("http://localhost:3001/users", data);
       return res.data;

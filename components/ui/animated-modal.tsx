@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "framer-motion"; // To'g'ri: 'motion/react' emas!
+import { AnimatePresence, motion } from "framer-motion";
 import React, {
   ReactNode,
   createContext,
@@ -73,7 +73,7 @@ export const ModalBody = ({
     document.body.style.overflow = open ? "hidden" : "auto";
   }, [open]);
 
-  const modalRef = useRef<HTMLDivElement>(null); // ✅ To'g'rilangan
+  const modalRef = useRef<HTMLDivElement>(null);
   useOutsideClick(modalRef, () => setOpen(false));
 
   return (
@@ -196,10 +196,10 @@ const CloseIcon = () => {
   );
 };
 
-// Hook: Detect clicks outside a ref
+// ✅ TO‘G‘RILANGAN: Function o‘rniga aniq turdagi callback
 export const useOutsideClick = (
   ref: React.RefObject<HTMLDivElement | null>,
-  callback: Function
+  callback: (event: MouseEvent | TouchEvent) => void
 ) => {
   useEffect(() => {
     const listener = (event: MouseEvent | TouchEvent) => {
