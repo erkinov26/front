@@ -8,6 +8,7 @@ import checked from '@/public/checked.svg';
 import warning from '@/public/warning.svg';
 import calendar from '@/public/calendar.svg';
 import { motion } from 'framer-motion';
+import { AnimatedModal } from "@/components/custom/modal";
 export default function Home() {
   return (
     <div className="relative w-full bg-cover min-h-screen bg-center" style={{ backgroundImage: `url('/bg-image.png')` }}>
@@ -78,7 +79,7 @@ export default function Home() {
             </motion.div>
             {/* Button */}
             <div className="-mt-[40px] sm:m-0">
-              <motion.button
+              {/* <motion.button
                 initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 2.1 }}
@@ -88,7 +89,8 @@ export default function Home() {
                 }}
               >
                 RO‘YXATDAN O‘TISH
-              </motion.button>
+              </motion.button> */}
+              <AnimatedModal />
               {/* Warning */}
               <motion.div initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}

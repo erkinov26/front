@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 const fetchData = async () => {
-  const response = await fetch('http://localhost:3001/users');
+  const response = await fetch('https://server-nodejs-df9a.onrender.com/users');
   return response.json();
 };
 
