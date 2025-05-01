@@ -63,11 +63,11 @@ export function AnimatedModal() {
 
   return (
     <Modal>
-      <motion.button
+      <motion.div
         initial={{ opacity: 0, x: -200 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.2, delay: 2.1 }}
-        className="text-white font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw] z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[2vw] text-[6vw] rounded-[100px]"
+        className="text-white text-center font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw] z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[2vw] text-[6vw] rounded-[100px]"
         style={{
           background:
             "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)",
@@ -76,7 +76,7 @@ export function AnimatedModal() {
         <ModalTrigger>
           <span className="text-white">RO‘YXATDAN O‘TISH</span>
         </ModalTrigger>
-      </motion.button>
+      </motion.div>
       <ModalBody className="rounded-lg">
         <ModalContent>
           <div>

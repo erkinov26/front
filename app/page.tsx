@@ -1,5 +1,4 @@
 'use client';
-import DataFetchingComponent from "@/components/custom/data-fetching";
 import Image from "next/image";
 import rector from '@/public/Sh-Mustafakulov.png';
 import prize from '@/public/prize.svg';
