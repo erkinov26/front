@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Image from 'next/image';
 import people from '@/public/people.png';
 import logo from '@/public/logo.svg';
@@ -123,7 +123,6 @@ export default function Home() {
           </p>
 
             <div className="flex flex-col sm:gap-[1.5vw] gap-[3vw] mt-[2vw]">
-              {/* Ism */}
               <div className="flex flex-col gap-[0.5vw]">
                 <label className="sm:text-[1vw] text-[4vw]" >Ism</label>
                 <input
@@ -134,8 +133,6 @@ export default function Home() {
                 />
                 {localErrors.fullName && <span className="text-red-500 sm:text-[1vw]">{localErrors.fullName}</span>}
               </div>
-
-              {/* Telefon raqam */}
               <div className="flex flex-col gap-[0.5vw]">
                 <label className="sm:text-[1vw] text-[4vw]" >Telefoningizni kiriting</label>
                 <input
@@ -147,8 +144,6 @@ export default function Home() {
                 />
                 {localErrors.phone && <span className="text-red-500 sm:text-[1vw]">{localErrors.phone}</span>}
               </div>
-
-              {/* Viloyat */}
               <div className="flex flex-col gap-[0.5vw]">
                 <label className="sm:text-[1vw] text-[4vw]">Qaysi viloyatdansiz</label>
                 <select
@@ -164,8 +159,6 @@ export default function Home() {
                 </select>
                 {localErrors.region && <span className="text-red-500 sm:text-[1vw]">{localErrors.region}</span>}
               </div>
-
-              {/* Ta'lim turi */}
               <div className="flex flex-col gap-[0.5vw]">
                 <label className="sm:text-[1vw] text-[4vw]">{"Ta'lim"} shakli</label>
                 <select
@@ -181,8 +174,6 @@ export default function Home() {
                 </select>
                 {localErrors.educationType && <span className="text-red-500 sm:text-[1vw]">{localErrors.educationType}</span>}
               </div>
-
-              {/* Yo'nalish */}
               {educationType && (
                 <div className="flex flex-col gap-[0.5vw]">
                   <label className="sm:text-[1vw] text-[4vw]">{"Yo'nalish"}</label>

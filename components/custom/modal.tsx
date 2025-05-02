@@ -12,7 +12,6 @@ import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 
-// Define the error response structure
 interface ErrorResponse {
   response: {
     data: {

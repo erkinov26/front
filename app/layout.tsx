@@ -6,18 +6,18 @@ import { Bebas_Neue } from "next/font/google";
 import Provider from "./provider";
 
 const poppins = Poppins({
-  weight: ["400", "600", "700"], // Kerakli og'irliklarni ko'rsating
-  subsets: ["latin"], // Kerakli subsetlar (masalan, lotin alifbosi)
-  display: "swap", // Display swap usulini qo‘llash
-  variable: "--font-poppins", // O'zgartiriladigan o'zgaruvchi nomi
+  weight: ["400", "600", "700"],
+  subsets: ["latin"],
+  display: "swap", 
+  variable: "--font-poppins",
 });
 
 
 const bebas = Bebas_Neue({
-  weight: "400", // Og'irlikni belgilash
-  subsets: ["latin"], // Kerakli subset
+  weight: "400",
+  subsets: ["latin"],
   display: "swap",
-  variable: "--font-bebas", // O'zgartiriladigan o'zgaruvchi
+  variable: "--font-bebas", 
 });
 
 

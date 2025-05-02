@@ -16,25 +16,19 @@ const ScrollDownArrow = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Scroll qilingan balandlikni olish
       const scrollPosition = window.scrollY;
-
-      // Agar scroll pastga 50px ga tushgan bo'lsa, hide qilish
       if (scrollPosition > 80) {
         setIsVisible(false);
       } else {
         setIsVisible(true);
       }
     };
-
-    // Scroll eventini tinglash
     window.addEventListener('scroll', handleScroll);
 
-    // Component unmount bo'lganda eventni o'chirish
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const arrows = [0, 1, 2]; // 3 ta icon
+  const arrows = [0, 1, 2]; 
 
   return (
     <div
@@ -42,17 +36,13 @@ const ScrollDownArrow = () => {
       className={`fixed bottom-10 left-[50px] sm:hidden -translate-x-1/2 z-50 w-[100px] h-[160px] flex flex-col items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300 ${isVisible ? 'opacity-100' : 'opacity-0'
         }`}
     >
-      {/* Outer glowing background ring */}
       <div
         className="absolute w-[100px] h-[100px] rounded-full blur-2xl opacity-50 animate-pulse"
       />
-
-      {/* Glowing gradient ring for extra depth */}
       <div
         className="absolute w-[100px] h-[100px]"
       />
 
-      {/* Flying chevron icons */}
       <div className="relative z-10 flex flex-col gap-2">
         {arrows.map((_, index) => (
           <motion.div

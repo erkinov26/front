@@ -30,7 +30,6 @@ export default function Home() {
       </div>
       <div className={`mx-[6vw] flex sm:flex-row flex-col-reverse justify-between ${isSuccess == false ? 'items-start' : 'items-center min-h-screen'} gap-8`}>
         {isSuccess === false && <div className="sm:w-[50%] w-full">
-          {/* Title */}
           <motion.div
             initial={{ opacity: 0, x: -200 }}
             animate={{ opacity: 1, x: 0 }}
@@ -38,13 +37,11 @@ export default function Home() {
             className="sm:text-[2.8vw] sm:block hidden font-bold font-bebas tracking-[0px] leading-[100%] w-full">
             ABITURIYENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
           </motion.div>
-          {/* Description */}
           <motion.p initial={{ opacity: 0, x: -200 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2, delay: 0.6 }} className="text-gray-700 sm:block hidden text-[0.9vw] lg:my-[1.3vw] my-[1vw] font-poppins leading-[150%] sm:w-[70%]">
             <strong>Nordik International University</strong> arzon kontrakt evaziga chet elda o‘qish, Work & Travel dasturida qatnashish va xalqaro diplom olish imkoniyatlarini oching.
           </motion.p>
-          {/* Benefits */}
           <div className="flex sm:flex-col flex-col-reverse">
             <ul className="list-none text-gray-700 text-base sm:mt-0 mt-[2vw] mb-[1.7vw]">
               <motion.li initial={{ opacity: 0, x: -200 }}
@@ -72,7 +69,6 @@ export default function Home() {
                 </span>
               </motion.li>
             </ul>
-            {/* Note Section */}
             <motion.div initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.2, delay: 1.8 }} className="flex items-center sm:justify-start justify-between bg-white lg:px-[1.1vw] sm:p-[1vw] p-[2vw] rounded-[50px] mb-[2vw]">
@@ -81,10 +77,8 @@ export default function Home() {
                 Taqdimot qatnashchilari uchun grant va stipendiya imkoniyatlari haqida yopiq ma’lumotlar taqdim etiladi!
               </p>
             </motion.div>
-            {/* Button */}
             <div className="-mt-[40px] sm:m-0">
               <AnimatedModal setIsSuccess={setIsSuccess} />
-              {/* Warning */}
               <motion.div initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 2.7 }} className="flex items-center gap-[1.5vw] sm:my-0 my-[4vw]  sm:mt-[2vw]">
