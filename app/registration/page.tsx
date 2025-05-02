@@ -90,7 +90,7 @@ export default function Home() {
         <div>
           <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" />
           <p className="font-bebas sm:text-[2vw] text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
-            <strong className="text-[#0B4075]">Nordik universitetida</strong> talaba bo'lish uchun pastdagi formani to'ldiring
+            <strong className="text-[#0B4075]">Nordik universitetida</strong> {"talaba bo'lish uchun pastdagi formani to'ldiring"}
           </p>
 
           <div className="flex flex-col sm:gap-[1.5vw] gap-[3vw] mt-[2vw]">
@@ -138,12 +138,12 @@ export default function Home() {
 
             {/* Ta'lim turi */}
             <div className="flex flex-col gap-[0.5vw]">
-              <label className="sm:text-[1vw] text-[4vw]">Ta'lim shakli</label>
+              <label className="sm:text-[1vw] text-[4vw]">{"Ta'lim"} shakli</label>
               <select
                 onChange={(e) => { setEducationType(e.target.value as EducationType); setDirection(''); }}
                 className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
               >
-                <option value="">Ta'lim turini tanlang</option>
+                <option value="">{"Ta'lim"} turini tanlang</option>
                 {educationTypes.map((type) => (
                   <option key={type} value={type}>
                     {type}
@@ -156,12 +156,12 @@ export default function Home() {
             {/* Yo'nalish */}
             {educationType && (
               <div className="flex flex-col gap-[0.5vw]">
-                <label className="sm:text-[1vw] text-[4vw]">Yo'nalish</label>
+                <label className="sm:text-[1vw] text-[4vw]">{"Yo'nalish"}</label>
                 <select
                   onChange={(e) => setDirection(e.target.value)}
                   className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
                 >
-                  <option value="">Yo'nalishni tanlang</option>
+                  <option value="">{"Yo'nalishni"} tanlang</option>
                   {filteredDirections.map((item) => (
                     <option key={item.name} value={item.name}>
                       {item.name}
