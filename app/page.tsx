@@ -8,7 +8,9 @@ import warning from '@/public/warning.svg';
 import calendar from '@/public/calendar.svg';
 import { motion } from 'framer-motion';
 import { AnimatedModal } from "@/components/custom/modal";
+import { useState } from "react";
 export default function Home() {
+  const [isSuccess,setIsSuccess] = useState(false);
   return (
     <div className="relative w-full bg-cover min-h-screen bg-center" style={{ backgroundImage: `url('/bg-image.png')` }}>
       <div className="sm:flex sm:justify-start">
@@ -78,17 +80,6 @@ export default function Home() {
             </motion.div>
             {/* Button */}
             <div className="-mt-[40px] sm:m-0">
-              {/* <motion.button
-                initial={{ opacity: 0, x: -200 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.2, delay: 2.1 }}
-                className="text-white font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw]  z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[2vw] text-[6vw] rounded-[100px]"
-                style={{
-                  background: "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)"
-                }}
-              >
-                RO‘YXATDAN O‘TISH
-              </motion.button> */}
               <AnimatedModal />
               {/* Warning */}
               <motion.div initial={{ opacity: 0, x: -200 }}
