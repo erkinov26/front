@@ -1,4 +1,3 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -12,6 +11,15 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
+
+// Define the error response structure
+interface ErrorResponse {
+  response: {
+    data: {
+      error: string;
+    };
+  };
+}
 
 export function AnimatedModal({
   setIsSuccess,
@@ -27,18 +35,17 @@ export function AnimatedModal({
     setErrors(null);
   };
 
-  const { isPending, mutate, isError, isSuccess } = useMutation({
+  const { isPending, mutate, isSuccess } = useMutation({
     mutationFn: async (data: { ism: string; telefon: string }) => {
       const res = await axios.post("http://localhost:3001/users", data);
       return res.data;
     },
-    onSuccess: (data) => {
-      console.log("Yuborildi:", data);
+    onSuccess: () => {
       setFormData({ ism: "", telefon: "" });
     },
-    onError: (error) => {
+    onError: (error: ErrorResponse) => {
       console.log(error);
-      setErrors((error as any).response?.data.error);
+      setErrors(error.response?.data.error);
     },
   });
 

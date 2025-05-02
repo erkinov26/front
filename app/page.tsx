@@ -135,7 +135,7 @@ export default function Home() {
             <motion.p initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.6 }} className="text-gray-700 text-center block sm:text-[2vw] text-[4vw] w-full font-poppins leading-[150%]">
-              Vebinarda qatnashish uchun, yopiq telegram kanalimizga obuna bo'ling!
+              Vebinarda qatnashish uchun, yopiq telegram kanalimizga obuna boling!
             </motion.p>
             <motion.div initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
