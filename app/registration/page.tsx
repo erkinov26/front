@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import people from '@/public/people.png';
 import logo from '@/public/logo.svg';
 import { Button } from '@/components/ui/button';
+import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
 
 type EducationType = 'Kunduzgi' | 'Sirtqi oddiy' | 'Sirtqi stajli';
 
@@ -20,8 +22,33 @@ export default function Home() {
   const [region, setRegion] = useState('');
   const [educationType, setEducationType] = useState<EducationType | ''>('');
   const [direction, setDirection] = useState('');
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
+  const [localErrors, setLocalErrors] = useState<{ [key: string]: string }>({});
+  const [errors, setErrors] = useState<string | null>("");
+  interface ErrorResponse {
+    response: {
+      data: {
+        error: string;
+      };
+    };
+  }
+  const { isPending, mutate, isSuccess } = useMutation({
+    mutationFn: async (data: { ism: string; telefon: string }) => {
+      const res = await axios.post("http://localhost:3001/registratedusers", data);
+      return res.data;
+    },
+    onSuccess: () => {
+      setFullName('')
+      setPhone('+998')
+      setRegion("")
+      setEducationType("")
+      setDirection('')
+      setErrors("")
+    },
+    onError: (error: ErrorResponse) => {
+      console.log(error);
+      setErrors(error.response?.data.error);
+    },
+  });
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let input = e.target.value;
     if (!input.startsWith('+998')) {
@@ -30,8 +57,8 @@ export default function Home() {
     const digitsOnly = input.replace(/\D/g, '').slice(3, 12);
     setPhone('+998' + digitsOnly);
   };
-
-  const handleSubmit = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
     const newErrors: { [key: string]: string } = {};
     if (!fullName.trim()) newErrors.fullName = 'Ism majburiy';
     if (phone.length < 13) newErrors.phone = 'Toʻliq telefon raqam kiriting';
@@ -40,19 +67,19 @@ export default function Home() {
     if (!direction) newErrors.direction = "Yo'nalishni tanlang";
 
     if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
+      setLocalErrors(newErrors);
       return;
     }
 
     const formData = {
-      fullName,
-      phone,
-      region,
-      educationType,
-      direction,
+      ism: fullName,
+      telefon: phone,
+      viloyat: region,
+      talim_shakli: educationType,
+      talim_yonalishi: direction,
     };
     console.log('Yuborilgan maʼlumot:', formData);
-    alert('Maʼlumotlar yuborildi!');
+    mutate(formData)
   };
 
   const regions = [
@@ -88,97 +115,103 @@ export default function Home() {
     <div className="relative sm:flex w-full min-h-screen bg-center sm:bg-[url('/bg-reg.png')] bg-none bg-cover">
       <div className="sm:w-1/2 px-[6vw] w-full sm:min-h-screen bg-white py-[3vw]">
         <div>
-          <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" />
-          <p className="font-bebas sm:text-[2vw] text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
+
+          {isSuccess ? <div className='flex items-center flex-col min-h-[80vh] justify-center'>           <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" /><p className="font-bebas sm:text-[4vw] text-center text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
+            <strong className="text-[#0B4075]">Tabriklaymiz</strong> {"talaba bo'lish uchun arizani to'ldirdingiz"}
+          </p></div> : (<>               <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" />     <p className="font-bebas sm:text-[2vw] text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
             <strong className="text-[#0B4075]">Nordik universitetida</strong> {"talaba bo'lish uchun pastdagi formani to'ldiring"}
           </p>
 
-          <div className="flex flex-col sm:gap-[1.5vw] gap-[3vw] mt-[2vw]">
-            {/* Ism */}
-            <div className="flex flex-col gap-[0.5vw]">
-              <label className="sm:text-[1vw] text-[4vw]" >Ism</label>
-              <input
-                placeholder="Ismingizni kiriting"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
-              />
-              {errors.fullName && <span className="text-red-500 sm:text-[1vw]">{errors.fullName}</span>}
-            </div>
-
-            {/* Telefon raqam */}
-            <div className="flex flex-col gap-[0.5vw]">
-              <label className="sm:text-[1vw] text-[4vw]" >Telefoningizni kiriting</label>
-              <input
-                value={phone}
-                onChange={handlePhoneChange}
-                inputMode="numeric"
-                maxLength={13}
-                className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
-              />
-              {errors.phone && <span className="text-red-500 sm:text-[1vw]">{errors.phone}</span>}
-            </div>
-
-            {/* Viloyat */}
-            <div className="flex flex-col gap-[0.5vw]">
-              <label className="sm:text-[1vw] text-[4vw]">Qaysi viloyatdansiz</label>
-              <select
-                onChange={(e) => setRegion(e.target.value)}
-                className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
-              >
-                <option value="">Viloyatni tanlang</option>
-                {regions.map((region) => (
-                  <option key={region} value={region}>
-                    {region}
-                  </option>
-                ))}
-              </select>
-              {errors.region && <span className="text-red-500 sm:text-[1vw]">{errors.region}</span>}
-            </div>
-
-            {/* Ta'lim turi */}
-            <div className="flex flex-col gap-[0.5vw]">
-              <label className="sm:text-[1vw] text-[4vw]">{"Ta'lim"} shakli</label>
-              <select
-                onChange={(e) => { setEducationType(e.target.value as EducationType); setDirection(''); }}
-                className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
-              >
-                <option value="">{"Ta'lim"} turini tanlang</option>
-                {educationTypes.map((type) => (
-                  <option key={type} value={type}>
-                    {type}
-                  </option>
-                ))}
-              </select>
-              {errors.educationType && <span className="text-red-500 sm:text-[1vw]">{errors.educationType}</span>}
-            </div>
-
-            {/* Yo'nalish */}
-            {educationType && (
+            <div className="flex flex-col sm:gap-[1.5vw] gap-[3vw] mt-[2vw]">
+              {/* Ism */}
               <div className="flex flex-col gap-[0.5vw]">
-                <label className="sm:text-[1vw] text-[4vw]">{"Yo'nalish"}</label>
+                <label className="sm:text-[1vw] text-[4vw]" >Ism</label>
+                <input
+                  placeholder="Ismingizni kiriting"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                  className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
+                />
+                {localErrors.fullName && <span className="text-red-500 sm:text-[1vw]">{localErrors.fullName}</span>}
+              </div>
+
+              {/* Telefon raqam */}
+              <div className="flex flex-col gap-[0.5vw]">
+                <label className="sm:text-[1vw] text-[4vw]" >Telefoningizni kiriting</label>
+                <input
+                  value={phone}
+                  onChange={handlePhoneChange}
+                  inputMode="numeric"
+                  maxLength={13}
+                  className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
+                />
+                {localErrors.phone && <span className="text-red-500 sm:text-[1vw]">{localErrors.phone}</span>}
+              </div>
+
+              {/* Viloyat */}
+              <div className="flex flex-col gap-[0.5vw]">
+                <label className="sm:text-[1vw] text-[4vw]">Qaysi viloyatdansiz</label>
                 <select
-                  onChange={(e) => setDirection(e.target.value)}
+                  onChange={(e) => setRegion(e.target.value)}
                   className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
                 >
-                  <option value="">{"Yo'nalishni"} tanlang</option>
-                  {filteredDirections.map((item) => (
-                    <option key={item.name} value={item.name}>
-                      {item.name}
+                  <option value="">Viloyatni tanlang</option>
+                  {regions.map((region) => (
+                    <option key={region} value={region}>
+                      {region}
                     </option>
                   ))}
                 </select>
-                {errors.direction && <span className="text-red-500 sm:text-[1vw]">{errors.direction}</span>}
+                {localErrors.region && <span className="text-red-500 sm:text-[1vw]">{localErrors.region}</span>}
               </div>
-            )}
 
-            <Button
-              className="mt-[2vw] bg-[#0B4075] sm:text-[1vw] text-[4vw] text-white sm:h-[3vw] h-[10vw] px-[5vw]"
-              onClick={handleSubmit}
-            >
-              Yuborish
-            </Button>
-          </div>
+              {/* Ta'lim turi */}
+              <div className="flex flex-col gap-[0.5vw]">
+                <label className="sm:text-[1vw] text-[4vw]">{"Ta'lim"} shakli</label>
+                <select
+                  onChange={(e) => { setEducationType(e.target.value as EducationType); setDirection(''); }}
+                  className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
+                >
+                  <option value="">{"Ta'lim"} turini tanlang</option>
+                  {educationTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+                {localErrors.educationType && <span className="text-red-500 sm:text-[1vw]">{localErrors.educationType}</span>}
+              </div>
+
+              {/* Yo'nalish */}
+              {educationType && (
+                <div className="flex flex-col gap-[0.5vw]">
+                  <label className="sm:text-[1vw] text-[4vw]">{"Yo'nalish"}</label>
+                  <select
+                    onChange={(e) => setDirection(e.target.value)}
+                    className="w-full sm:h-[3vw] h-[10vw] sm:text-[1vw] text-[4vw] sm:px-[1vw] px-[4vw] border border-gray-300 rounded-sm"
+                  >
+                    <option value="">{"Yo'nalishni"} tanlang</option>
+                    {filteredDirections.map((item) => (
+                      <option key={item.name} value={item.name}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                  {localErrors.direction && <span className="text-red-500 sm:text-[1vw]">{localErrors.direction}</span>}
+                </div>
+              )}
+
+              {errors && <p className='text-center text-red-400 text-0.5vw'>{errors}</p>}
+
+              <Button
+                className="mt-[2vw] bg-[#0B4075] sm:text-[1vw] text-[4vw] text-white sm:h-[3vw] h-[10vw] px-[5vw]"
+                onClick={handleSubmit}
+              >
+                {
+                  isPending ? "Yuborilyapti" : "Yuborish"
+                }
+              </Button>
+            </div></>)}
         </div>
       </div>
 
