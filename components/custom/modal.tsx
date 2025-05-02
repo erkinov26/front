@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -12,7 +12,12 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
-export function AnimatedModal() {
+
+export function AnimatedModal({
+  setIsSuccess,
+}: {
+  setIsSuccess: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const [formData, setFormData] = useState({ ism: "", telefon: "" });
   const [errors, setErrors] = useState<null | string>(null);
 
@@ -22,7 +27,7 @@ export function AnimatedModal() {
     setErrors(null);
   };
 
-  const { isPending, mutate, isError } = useMutation({
+  const { isPending, mutate, isError, isSuccess } = useMutation({
     mutationFn: async (data: { ism: string; telefon: string }) => {
       const res = await axios.post("http://localhost:3001/users", data);
       return res.data;
@@ -32,14 +37,27 @@ export function AnimatedModal() {
       setFormData({ ism: "", telefon: "" });
     },
     onError: (error) => {
-      console.error("Xatolik:", setErrors((error as any).response?.data.message));
+      console.log(error);
+      setErrors((error as any).response?.data.error);
     },
   });
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!formData.ism.trim() || !formData.telefon.trim()) {
+      setErrors("Iltimos, barcha maydonlarni to‘ldiring.");
+      return;
+    }
+
     mutate(formData);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsSuccess(true);
+    }
+  }, [isSuccess, setIsSuccess]);
 
   return (
     <Modal>
@@ -59,7 +77,7 @@ export function AnimatedModal() {
       </motion.div>
       <ModalBody className="rounded-lg">
         <ModalContent>
-          <form action="">
+          <form onSubmit={handleSubmit}>
             <div>
               <Label>Ism</Label>
               <Input
@@ -81,7 +99,6 @@ export function AnimatedModal() {
               />
             </div>
             <button
-              onClick={handleSubmit}
               type="submit"
               disabled={isPending}
               className="text-white cursor-pointer font-semibold w-full py-[15px] rounded-[100px] disabled:opacity-50"
@@ -94,7 +111,8 @@ export function AnimatedModal() {
             </button>
           </form>
         </ModalContent>
-        {isError && errors && (
+
+        {errors && (
           <ModalFooter>
             <p className="text-red-500 w-full text-sm text-center">{errors}</p>
           </ModalFooter>

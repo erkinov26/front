@@ -7,16 +7,18 @@ import checked from '@/public/checked.svg';
 import warning from '@/public/warning.svg';
 import calendar from '@/public/calendar.svg';
 import { motion } from 'framer-motion';
+import telegram from '@/public/telegram.svg';
 import { AnimatedModal } from "@/components/custom/modal";
+import vector from '@/public/vector-five.svg';
 import { useState } from "react";
 export default function Home() {
-  const [isSuccess,setIsSuccess] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   return (
     <div className="relative w-full bg-cover min-h-screen bg-center" style={{ backgroundImage: `url('/bg-image.png')` }}>
       <div className="sm:flex sm:justify-start">
         <motion.div initial={{ opacity: 0, x: -200 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.2 }} className="sm:ml-[6vw] sm:rounded-b-[30px] sm:w-auto sm:mx-0 w-[95%] mx-auto rounded-b-md text-gray-600 mb-[2vw] bg-white flex items-center justify-center sm:py-[0.8vw] py-[2vw] sm:px-[2vw]" style={{ boxShadow: '0px 4px 24px 0px #0000001F;' }}>
+          transition={{ duration: 0.2 }} className={`sm:ml-[6vw] sm:rounded-b-[30px] sm:w-auto sm:mx-0 w-[95%] mx-auto rounded-b-md text-gray-600 mb-[2vw] bg-white flex items-center justify-center sm:py-[0.8vw] py-[2vw] sm:px-[2vw] ${isSuccess ? 'sm:hidden' : ''}`} style={{ boxShadow: '0px 4px 24px 0px #0000001F;' }}>
           <Image src={calendar} alt="calendar" className="inline sm:w-[2vw] w-[6vw]" />
           <span className="text-black text-[5vw] sm:text-[1.5vw] rounded-md font-bebas mx-[1vw]"> 10-11-MAY</span>
           <span className="font-poppins text-[3vw] text-[#0B4075] sm:text-[1vw]"
@@ -25,8 +27,8 @@ export default function Home() {
           </span>
         </motion.div>
       </div>
-      <div className="mx-[6vw] flex sm:flex-row flex-col-reverse justify-between items-start gap-8">
-        <div className="sm:w-[50%] w-full">
+      <div className={`mx-[6vw] flex sm:flex-row flex-col-reverse justify-between ${isSuccess == false ? 'items-start' : 'items-center min-h-screen'} gap-8`}>
+        {isSuccess === false && <div className="sm:w-[50%] w-full">
           {/* Title */}
           <motion.div
             initial={{ opacity: 0, x: -200 }}
@@ -80,7 +82,7 @@ export default function Home() {
             </motion.div>
             {/* Button */}
             <div className="-mt-[40px] sm:m-0">
-              <AnimatedModal />
+              <AnimatedModal setIsSuccess={setIsSuccess} />
               {/* Warning */}
               <motion.div initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -93,32 +95,72 @@ export default function Home() {
 
 
 
-        </div>
+        </div>}
 
-        <div className="relative sm:flex items-start sm:w-[50%] w-full mx-auto">
-          <motion.h1 initial={{ opacity: 0, x: -200 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.3 }} className="text-center sm:hidden block text-[8vw] my-[3vw] font-bold font-bebas tracking-[0px] leading-[100%] w-full">
-            ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
-          </motion.h1>
-          <motion.p initial={{ opacity: 0, x: -200 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.6 }} className="text-gray-700 text-center sm:hidden block text-[4vw] w-full font-poppins leading-[150%]">
-            <strong>Nordik International University</strong> arzon kontrakt evaziga chet elda o‘qish, Work & Travel dasturida qatnashish va xalqaro diplom olish imkoniyatlarini oching.
-          </motion.p>
+        <div className="relative sm:flex items-start sm:w-[50%]  w-full mx-auto">
+          {
+            isSuccess === false && <>
+              <motion.h1 initial={{ opacity: 0, x: -200 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.3 }} className="text-center sm:hidden block text-[8vw] my-[3vw] font-bold font-bebas tracking-[0px] leading-[100%] w-full">
+                ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
+              </motion.h1>
+              <motion.p initial={{ opacity: 0, x: -200 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.3, delay: 0.6 }} className="text-gray-700 text-center sm:hidden block text-[4vw] w-full font-poppins leading-[150%]">
+                <strong>Nordik International University</strong> arzon kontrakt evaziga chet elda o‘qish, Work & Travel dasturida qatnashish va xalqaro diplom olish imkoniyatlarini oching.
+              </motion.p></>
+          }
           <motion.div initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 0.9 }} className="sm:w-[90%] w-full -mt-[3.8vw]">
+            transition={{ duration: 0.3, delay: 0.9 }} className={` ${isSuccess === false ? 'sm:w-[90%] w-full -mt-[3.8vw]' : 'sm:w-[90%] w-full'}`}>
             <Image src={rector} alt="Speaker Image" className="w-full" />
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: 1.2 }} className="sm:w-[50%] md:w-[40%] w-[50%] rounded-lg mt-6 absolute left-1/2 bottom-0 transform sm:-translate-x-2/3 -translate-x-1/2 -translate-y-2/3 " >
+            transition={{ duration: 0.3, delay: 1.2 }} className={`sm:w-[50%] md:w-[40%] w-[50%] rounded-lg mt-6 absolute left-1/2 bottom-0 transform sm:-translate-x-2/3 -translate-x-1/2 -translate-y-2/3`} >
             <Image src={date} alt="Date Icon" className="w-full" />
           </motion.div>
 
         </div>
+        {
+          isSuccess && <div className="sm:w-[50%] w-full">
+            <motion.div
+              initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.2, delay: 0.3 }}
+              className="sm:text-[2.8vw] sm:block text-[8vw] font-bold font-bebas text-center tracking-[0px] leading-[100%] w-full ">
+              Siz ro’yxatdan <span className="text-[#0B4075]">muvaffaqiyatli o’tdingiz!</span>
+            </motion.div>
+            <motion.p initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.6 }} className="text-gray-700 text-center block sm:text-[2vw] text-[4vw] w-full font-poppins leading-[150%]">
+              Vebinarda qatnashish uchun, yopiq telegram kanalimizga obuna bo'ling!
+            </motion.p>
+            <motion.div initial={{ opacity: 0, x: -200 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.9 }} >
+              <Image src={vector} alt="vector" className="sm:w-[30vw] w-[40vw] my-6 block mx-auto" />
+
+              <motion.a
+                href="https://t.me/nordic_edu"
+                initial={{ opacity: 0, x: -200 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.2, delay: 2.1 }}
+                className="text-white text-center font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw] z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[3vw] text-[6vw] rounded-[100px] flex items-center justify-center sm:gap-[2vw] gap-[4vw]"
+                style={{
+                  background:
+                    "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)",
+                }}
+              >
+                <Image src={telegram} alt="telegram-icon" className="sm:w-[4vw] w-[8vw]" />
+                <span>OBUNA BO’LISH</span>
+
+              </motion.a>
+            </motion.div>
+          </div>
+        }
       </div>
-    </div>
+    </div >
   );
 }
