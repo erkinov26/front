@@ -11,6 +11,7 @@ import telegram from '@/public/telegram.svg';
 import { AnimatedModal } from "@/components/custom/modal";
 import vector from '@/public/vector-five.svg';
 import { useState } from "react";
+import ScrollDownArrow from "@/components/custom/scroll-down-arrow";
 export default function Home() {
   const [isSuccess, setIsSuccess] = useState(false);
   return (
@@ -35,7 +36,7 @@ export default function Home() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2, delay: 0.3 }}
             className="sm:text-[2.8vw] sm:block hidden font-bold font-bebas tracking-[0px] leading-[100%] w-full">
-            ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
+            ABITURIYENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
           </motion.div>
           {/* Description */}
           <motion.p initial={{ opacity: 0, x: -200 }}
@@ -51,7 +52,7 @@ export default function Home() {
                 transition={{ duration: 0.2, delay: 0.9 }} className="flex items-start">
                 <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
                 <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
-                  Exchange dasturlari orqali qanday qilib Amerika, Koreya, Italiya kabi davlatlarda grandda o‘qish
+                  Exchange dasturlari orqali qanday qilib Amerika - Koreya - Italiya kabi davlatlarda grandda o‘qish
                 </span>
               </motion.li>
               <motion.li initial={{ opacity: 0, x: -200 }}
@@ -103,7 +104,7 @@ export default function Home() {
               <motion.h1 initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.3 }} className="text-center sm:hidden block text-[8vw] my-[3vw] font-bold font-bebas tracking-[0px] leading-[100%] w-full">
-                ABITURIENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
+                ABITURIYENTLIKDAN <span className="text-[#0B4075]">YEVROPA DIPLOMINI</span> OLISHGACHA BARCHA QADAMLAR
               </motion.h1>
               <motion.p initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -147,7 +148,7 @@ export default function Home() {
                 initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 2.1 }}
-                className="text-white text-center font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw] z-50 relative sm:mt-0 hover:opacity-90 transition sm:text-[3vw] text-[6vw] rounded-[100px] flex items-center justify-center sm:gap-[2vw] gap-[4vw]"
+                className="text-white text-center font-semibold sm:w-auto w-full sm:py-[1vw] sm:px-[6vw] py-[5vw] z-50 relative sm:mt-0 hover:opacity-90 transition xsm:text-[3vw] text-[6vw] rounded-[100px] flex items-center justify-center sm:gap-[2vw] gap-[4vw]"
                 style={{
                   background:
                     "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)",
@@ -161,6 +162,7 @@ export default function Home() {
           </div>
         }
       </div>
+      <ScrollDownArrow />
     </div >
   );
 }
