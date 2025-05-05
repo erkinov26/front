@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
 import people from '@/public/people.png';
 import logo from '@/public/logo.svg';
 import { Button } from '@/components/ui/button';
@@ -116,9 +115,9 @@ export default function Home() {
       <div className="sm:w-1/2 px-[6vw] w-full sm:min-h-screen bg-white py-[3vw]">
         <div>
 
-          {isSuccess ? <div className='flex items-center flex-col min-h-[80vh] justify-center'>           <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" /><p className="font-bebas sm:text-[4vw] text-center text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
+          {isSuccess ? <div className='flex items-center flex-col min-h-[80vh] justify-center'>           <img src={logo.src} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" /><p className="font-bebas sm:text-[4vw] text-center text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
             <strong className="text-[#0B4075]">Tabriklaymiz</strong> {"talaba bo'lish uchun arizani to'ldirdingiz"}
-          </p></div> : (<>               <Image src={logo} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" />     <p className="font-bebas sm:text-[2vw] text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
+          </p></div> : (<>               <img src={logo.src} alt="univer-logo" className="sm:w-[10vw] sm:mt-[1vw]" />     <p className="font-bebas sm:text-[2vw] text-[8vw]  mt-[2vw] leading-[120%] sm:w-[75%]">
             <strong className="text-[#0B4075]">Nordik universitetida</strong> {"talaba bo'lish uchun pastdagi formani to'ldiring"}
           </p>
 
@@ -207,7 +206,7 @@ export default function Home() {
       </div>
 
       <div className="sm:w-1/2 hidden sm:flex">
-        <Image src={people} alt="people" className="w-full" />
+        <img src={people.src} alt="people" className="w-full" />
       </div>
     </div>
   );

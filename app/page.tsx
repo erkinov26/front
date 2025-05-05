@@ -1,5 +1,4 @@
 'use client';
-import Image from "next/image";
 import rector from '@/public/Sh-Mustafakulov.png';
 import prize from '@/public/prize.svg';
 import date from '@/public/date.png';
@@ -15,12 +14,12 @@ import ScrollDownArrow from "@/components/custom/scroll-down-arrow";
 export default function Home() {
   const [isSuccess, setIsSuccess] = useState(false);
   return (
-    <div className="relative w-full bg-cover min-h-screen bg-center" style={{ backgroundImage: `url('/bg-image.png')` }}>
+    <div className="relative w-full bg-cover min-h-screen bg-center overflow-hidden"  style={{ backgroundImage: `url('/bg-image.png')` }}>
       <div className="sm:flex sm:justify-start">
         <motion.div initial={{ opacity: 0, x: -200 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.2 }} className={`sm:ml-[6vw] sm:rounded-b-[30px] sm:w-auto sm:mx-0 w-[95%] mx-auto rounded-b-md text-gray-600 mb-[2vw] bg-white flex items-center justify-center sm:py-[0.8vw] py-[2vw] sm:px-[2vw] ${isSuccess ? 'sm:hidden' : ''}`} style={{ boxShadow: '0px 4px 24px 0px #0000001F;' }}>
-          <Image src={calendar} alt="calendar" className="inline sm:w-[2vw] w-[6vw]" />
+          <img src={calendar.src} alt="calendar" className="inline sm:w-[2vw] w-[6vw]" />
           <span className="text-black text-[5vw] sm:text-[1.5vw] rounded-md font-bebas mx-[1vw]"> 10-11-MAY</span>
           <span className="font-poppins text-[3vw] text-[#0B4075] sm:text-[1vw]"
           >
@@ -47,7 +46,7 @@ export default function Home() {
               <motion.li initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 0.9 }} className="flex items-start">
-                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <img src={checked.src} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
                 <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
                   Exchange dasturlari orqali qanday qilib Amerika - Koreya - Italiya kabi davlatlarda grandda o‘qish
                 </span>
@@ -55,7 +54,7 @@ export default function Home() {
               <motion.li initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 1.2 }} className="flex items-start sm:my-[1.2vw] my-[3vw]">
-                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <img src={checked.src} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
                 <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
                   Work & Travel: Talabalik davrida qanday turar joy va daromad  olish imkoniyatlari
                 </span>
@@ -63,7 +62,7 @@ export default function Home() {
               <motion.li initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 1.5 }} className="flex items-start">
-                <Image src={checked} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
+                <img src={checked.src} alt="checked" className="mr-[1vw] sm:w-[1.5vw] w-[4vw]" />
                 <span className="font-[550] font-poppins sm:text-[1vw] text-[3vw] ">
                   Arzon kontrakt bilan xalqaro diplom olish yo‘llari
                 </span>
@@ -72,7 +71,7 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.2, delay: 1.8 }} className="flex items-center sm:justify-start justify-between bg-white lg:px-[1.1vw] sm:p-[1vw] p-[2vw] rounded-[50px] mb-[2vw]">
-              <Image src={prize} alt="Note Icon" className="sm:w-[4.5vw] w-[15vw] mr-[1vw]" />
+              <img src={prize.src} alt="Note Icon" className="sm:w-[4.5vw] w-[15vw] mr-[1vw]" />
               <p className="text-gray-700 sm:text-[1vw] font-poppins text-[3vw] sm:ml-0 ml-[4vw]">
                 Taqdimot qatnashchilari uchun grant va stipendiya imkoniyatlari haqida yopiq ma’lumotlar taqdim etiladi!
               </p>
@@ -82,7 +81,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 2.7 }} className="flex items-center gap-[1.5vw] sm:my-0 my-[4vw]  sm:mt-[2vw]">
-                <Image src={warning} alt="warning" className="sm:w-[1.5vw] w-[6vw]" />
+                <img src={warning.src} alt="warning" className="sm:w-[1.5vw] w-[6vw]" />
                 <span className="font-[550] font-poppins sm:text-[1.2vw] text-[3vw]">Faqat ro‘yxatdan o‘tganlar qatnasha oladi</span>
               </motion.div>
             </div>
@@ -109,12 +108,12 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 0.9 }} className={` ${isSuccess === false ? 'sm:w-[90%] w-full -mt-[3.8vw]' : 'sm:w-[90%] w-full'}`}>
-            <Image src={rector} alt="Speaker Image" className="w-full" />
+            <img src={rector.src} alt="Speaker Image" className="w-full" />
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 200 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: 1.2 }} className={`sm:w-[50%] md:w-[40%] w-[50%] rounded-lg mt-6 absolute left-1/2 bottom-0 transform sm:-translate-x-2/3 -translate-x-1/2 -translate-y-2/3`} >
-            <Image src={date} alt="Date Icon" className="w-full" />
+            <img src={date.src} alt="Date Icon" className="w-full" />
           </motion.div>
 
         </div>
@@ -135,7 +134,7 @@ export default function Home() {
             <motion.div initial={{ opacity: 0, x: -200 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.3, delay: 0.9 }} >
-              <Image src={vector} alt="vector" className="sm:w-[30vw] w-[40vw] my-6 block mx-auto" />
+              <img src={vector.src} alt="vector" className="sm:w-[30vw] w-[40vw] my-6 block mx-auto" />
 
               <motion.a
                 href="https://t.me/nordic_edu"
@@ -148,7 +147,7 @@ export default function Home() {
                     "linear-gradient(90deg, #027D1D 0%, #31BA4F 48.08%, #007B1B 100%)",
                 }}
               >
-                <Image src={telegram} alt="telegram-icon" className="sm:w-[4vw] w-[8vw]" />
+                <img src={telegram.src} alt="telegram-icon" className="sm:w-[4vw] w-[8vw]" />
                 <span>OBUNA BO’LISH</span>
 
               </motion.a>
