@@ -137,7 +137,7 @@ export default function Home() {
               <img src={vector.src} alt="vector" className="sm:w-[30vw] w-[40vw] my-6 block mx-auto" />
 
               <motion.a
-                href="https://t.me/nordic_edu"
+                href="https://t.me/+EaHrV3DBidliMTgy"
                 initial={{ opacity: 0, x: -200 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.2, delay: 2.1 }}
