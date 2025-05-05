@@ -33,7 +33,7 @@ export default function Home() {
   }
   const { isPending, mutate, isSuccess } = useMutation({
     mutationFn: async (data: { ism: string; telefon: string }) => {
-      const res = await axios.post("http://localhost:3001/registratedusers", data);
+      const res = await axios.post("https://form-api.nordicuniversity.org/registratedusers", data);
       return res.data;
     },
     onSuccess: () => {

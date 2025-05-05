@@ -36,7 +36,7 @@ export function AnimatedModal({
 
   const { isPending, mutate, isSuccess } = useMutation({
     mutationFn: async (data: { ism: string; telefon: string }) => {
-      const res = await axios.post("http://localhost:3001/sampleusers", data);
+      const res = await axios.post("https://form-api.nordicuniversity.org/sampleusers", data);
       return res.data;
     },
     onSuccess: () => {
